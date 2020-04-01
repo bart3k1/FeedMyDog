@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views import generic
 
 from calendog.forms import CallendogForm
@@ -62,3 +62,11 @@ class CreateCallendog(generic.CreateView):
         kwargs = super(CreateCallendog, self).get_form_kwargs()
         kwargs['user'] = self.request.user
         return kwargs
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        super(CreateCallendog, self).form_valid(form)
+        return redirect("home")
+
+    def get_success_url(self):
+        return reverse('home')

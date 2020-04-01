@@ -24,7 +24,7 @@
             {% for i in form %}
                 <div class="col-6 form-group {% if i.errors %}alert alert-danger {% endif %}">
                     {{ i.errors }}
-                    {#                                        <b>{{ i.label_tag }}</b>#}
+                                                            <b>{{ i.label_tag }}</b>
                     {% render_field i placeholder=i.label class="form-control" %}
                     {% if i.help_text %} <small class="text-muted">{{ i.help_text }}</small>{% endif %}
                 </div>
